@@ -28,34 +28,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---------- Expression-of-interest forms (apply page + homepage teaser) ---------- */
-  function wireForm(formId, btnId, noteId) {
-    const form = document.getElementById(formId);
-    if (!form) return;
-    const submitBtn = document.getElementById(btnId);
-    const note = document.getElementById(noteId);
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      // Simulate submission
-      submitBtn.textContent = 'Sent';
-      submitBtn.disabled = true;
-      if (note) note.classList.add('show');
-
-      // Lock the fields
-      Array.from(form.elements).forEach(el => {
-        if (el !== submitBtn) el.disabled = true;
-      });
-    });
-  }
-
-  wireForm('applyForm', 'submitBtn', 'formNote');
-  wireForm('homeForm', 'homeSubmitBtn', 'homeFormNote');
-
 });
